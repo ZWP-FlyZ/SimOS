@@ -1,5 +1,5 @@
-TOOLS_PATH	=	../../tools/
-OUT_PATH	=	../../out/#SimOS.img输出文件
+TOOLS_PATH	=	../../bintools
+OUT_PATH	=	../../out#SimOS.img输出文件
 
 
 REMOVE	=	del#in windows
@@ -7,7 +7,7 @@ REMOVE	=	del#in windows
 MAKE	=	make -r
 AS		=	as
 OBJCOPY	=	objcopy
-BINSPLIT=	$(TOOLS_PATH)binsplit 
+BINSPLIT=	$(TOOLS_PATH)/binsplit 
 OBJDUMP	=	objdump 
 
 STR_ADDR=	0x7c00 #截取开始字节数
