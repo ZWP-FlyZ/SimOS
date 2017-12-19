@@ -1,0 +1,11 @@
+#### bin ####
+*.o
+*.to
+*.out
+*.exe
+*.bin
+tools/
+out/
+
+
+
