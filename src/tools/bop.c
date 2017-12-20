@@ -3,6 +3,14 @@
 #include<stdlib.h>
 #include<string.h>
 
+
+char inNum(char c) {
+	int tmp = -1;
+	if (c >= '0'&& c <= '9')
+		tmp = c - '0';
+	return tmp;
+}
+
 char char2num(char c) {
 	int tmp = -1;
 	if (c >= '0'&& c <= '9')
@@ -14,11 +22,11 @@ char char2num(char c) {
 	return tmp;
 }
 
-unsigned long long strnum2long(char * str) 
+ulonglong strnum2long(char * str) 
 {
 	if (str == NULL) return -1;
 	char len = strlen(str);
-	unsigned long long tmp = 0;
+	ulonglong tmp = 0;
 	char saves[20];
 	char tt = 0;
 	saves[19] = 0;//count
@@ -47,7 +55,7 @@ unsigned long long strnum2long(char * str)
 		saves[saves[19]] = tt;
 		saves[19]++;
 	}
-	unsigned long long mov = 1;
+	ulonglong mov = 1;
 	while (saves[19]--)
 	{
 		tmp += saves[saves[19]] * mov;
@@ -55,5 +63,40 @@ unsigned long long strnum2long(char * str)
 	}
 	return tmp;
 }
+
+
+ulong decstr2long(char * str)
+{
+	if (str == NULL) return -1;
+	char len = strlen(str);
+	ulonglong tmp = 0;
+	char saves[20];
+	char tt = 0;
+	saves[19] = 0;//count
+	saves[18] = 0;//zero flag
+
+	if (len > 10) 
+	{
+		printf("err format = %s len >10\n", str);
+		return  0x0;
+	}
+	for (int i = 0; i < len; i++)
+	{
+		if (saves[18] == 0 && str[i] != '0') saves[18] = 1;
+		if (saves[18] == 0) continue;
+		if ((tt = inNum(str[i])) < 0) break;
+		saves[saves[19]] = tt;
+		saves[19]++;
+		
+	}
+	ulonglong mov = 1;
+	while (saves[19]--)
+	{
+		tmp += saves[saves[19]] * mov;
+		mov = mov * 10;
+	}
+	return tmp;
+}
+
 
 

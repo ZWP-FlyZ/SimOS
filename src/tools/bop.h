@@ -1,6 +1,14 @@
-#ifndef __TOOLS_H_
-#define __TOOLS_H_
+#ifndef __BOP_H_
+#define __BOP_H_
 
-unsigned long long strnum2long(char * str);
+#define uchar unsigned char
+#define ushort unsigned short
+#define uint unsigned int
+#define ulong unsigned int 
+#define ulonglong unsigned long long
+
+ulonglong strnum2long(char * str);
+ulong decstr2long(char * str);
 
 #endif
+

@@ -9,8 +9,8 @@ int main(int argc, char *argv[])
 {
 
 	FILE *inFile, *outFile;
-	unsigned long long start = 0, end = 0, tail_index = BUFF_LEN;
-	unsigned char buff[BUFF_LEN];
+	ulonglong start = 0, end = 0, tail_index = BUFF_LEN;
+	uchar buff[BUFF_LEN];
 
 	if (argc < 5)
 	{
@@ -24,12 +24,12 @@ int main(int argc, char *argv[])
 		printf("start end err  = (start = %lld,end = %lld)\n", start, end);
 		exit(1);
 	}
-	if ((inFile=fopen(argv[1], "rb"))==NULL)
+	if ((inFile = fopen(argv[1], "rb")) == NULL)
 	{
 		printf("open file err:[inputfile=%s]\n", argv[1]);
 		exit(1);
 	}
-	if ((outFile = fopen(argv[4], "wb"))==NULL )
+	if ((outFile = fopen(argv[4], "wb")) == NULL)
 	{
 		printf("open file err:[outputfile=%s]\n", argv[4]);
 		exit(1);
@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 
 	int rc = 0;
 	int ch = 0, ct = 0;
-	unsigned long long sta_p, end_p,cont=0;
+	ulonglong sta_p, end_p,cont=0;
 	sta_p = start / BUFF_LEN;
 	end_p = (end-1) / BUFF_LEN;
 	while ((rc = fread(buff, sizeof(unsigned  char), 
