@@ -7,7 +7,7 @@ REMOVE	=	del#in windows
 MAKE	=	make -r
 AS		=	as
 OBJCOPY	=	objcopy
-BINSPLIT=	$(TOOLS_PATH)/binsplit 
+BINCOPY=	$(TOOLS_PATH)/bincopy 
 OBJDUMP	=	objdump 
 
 STR_ADDR=	0x7c00 #截取开始字节数
@@ -21,7 +21,7 @@ ipl.o : ipl.s makefile
 ipl.to : ipl.o makefile
 	$(OBJCOPY) -R .note -R .comment -S -O binary ipl.o ipl.to
 ipl.bin : ipl.to makefile
-	$(BINSPLIT) ipl.to $(STR_ADDR) $(END_ADDR) ipl.bin
+	$(BINCOPY) ipl.to $(STR_ADDR) $(END_ADDR) ipl.bin
 
 bin : 
 	$(MAKE) ipl.bin

@@ -5,7 +5,7 @@ MAKE	=	make -r
 GCC		=	gcc
 REMOVE	=	del#in windows
 
-BINSPLIT_OBJ = binsplit.o bop.o
+BINCOPY_OBJ = bincopy.o bop.o
 
 
 default : 
@@ -16,14 +16,14 @@ default :
 %.o : %.c makefile
 	$(GCC) $*.c -o $*.o -c
 
-binsplit : $(BINSPLIT_OBJ)
-	$(GCC) $(BINSPLIT_OBJ) -o $(TOOLS_PATH)/binsplit
+bincopy : $(BINCOPY_OBJ)
+	$(GCC) $(BINCOPY_OBJ) -o $(TOOLS_PATH)/bincopy
 
 clean : 
 	$(REMOVE) *.o 
 
 all : 
-	$(MAKE)  binsplit
+	$(MAKE)  bincopy 
 
 
 

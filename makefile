@@ -10,7 +10,7 @@ BINTOOLS_PATH	= 	./bintools/
 OUT_PATH	= 	./out/
 
 REMOVE	=	del#in windows
-MAKE	=	make -r
+MAKE	=	make -r VERBOSE=1
 
 ipl : 
 	$(MAKE) -C $(IPL_SRC_PATH) bin
@@ -19,9 +19,11 @@ tools :
 	$(MAKE) -C $(TOOL_SRC_PATH) all
 
 all : 
-	$(MAKE) tools
-	$(MAKE) ipl
+	$(MAKE) tools 
+	$(MAKE) ipl 
 clean :  
 	$(MAKE) -C $(IPL_SRC_PATH) clean
 	$(MAKE) -C $(TOOL_SRC_PATH) clean
+	# $(REMOVE) $(BINTOOLS_PATH)*.*
+	# $(REMOVE) $(OUT_PATH)*.*
 

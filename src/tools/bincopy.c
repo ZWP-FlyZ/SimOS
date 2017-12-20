@@ -24,11 +24,14 @@ int main(int argc, char *argv[])
 		printf("start end err  = (start = %lld,end = %lld)\n", start, end);
 		exit(1);
 	}
-	inFile = fopen(argv[1], "rb");
-	outFile = fopen(argv[4], "wb");
-	if (inFile == NULL || outFile == NULL)
+	if ((inFile=fopen(argv[1], "rb"))==NULL)
 	{
-		printf("open file err:[inputfile=%s,start=%s,end=%s,outputfile=%s]\n", argv[1], argv[2], argv[3], argv[4]);
+		printf("open file err:[inputfile=%s]\n", argv[1]);
+		exit(1);
+	}
+	if ((outFile = fopen(argv[4], "wb"))==NULL )
+	{
+		printf("open file err:[outputfile=%s]\n", argv[4]);
 		exit(1);
 	}
 
