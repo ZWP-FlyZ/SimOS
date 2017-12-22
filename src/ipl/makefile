@@ -10,8 +10,8 @@ OBJCOPY	=	objcopy
 BINCOPY=	$(TOOLS_PATH)/bincopy 
 OBJDUMP	=	objdump 
 
-STR_ADDR=	0x7c00 #截取开始字节数
-END_ADDR=	0x7e00 #截取结束字节数（不包含该位置）
+STR_ADDR=	0 #截取开始字节数
+END_ADDR=	0x200 #截取结束字节数（不包含该位置）
 
 default : 
 	$(MAKE) ipl.bin 
@@ -27,5 +27,8 @@ bin :
 	$(MAKE) ipl.bin
 clean : 
 	$(REMOVE) ipl.o ipl.to ipl.bin
+
+dump : 
+	$(OBJDUMP) -D -m i8086 -b binary ipl.bin
 
 

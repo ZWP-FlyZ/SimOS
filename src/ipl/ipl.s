@@ -1,8 +1,13 @@
     .code16
     .text
-    .org 0x7c00
+#地址偏远的原方法，现在使用新的方法并更改bincopy的参数
+#    .org 0x7c00
+
+BOOTSEQ = 0x07c0
+BOOTADDR = 0x7c00
+
 bootse:
-    jmp entry
+    ljmp $BOOTSEQ,$entry
     .byte 0x90
     .ascii "SimOS   " #启动盘名称(8Byte)
     .word 512    #扇区大小
@@ -26,11 +31,12 @@ bootse:
 entry:
     mov $0x0,%ax
     mov %ax,%ss
-    mov 0x7c00,%sp
+    mov BOOTADDR,%sp
     mov %ax,%ds
     mov %ax,%es
-
-    mov $msg,%si
+    mov $BOOTADDR,%ax
+    add $msg,%ax
+    mov %ax,%si
 printLoop:
     mov (%si),%al
     add $0x1,%si

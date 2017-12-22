@@ -15,6 +15,8 @@ int main(int argc, char *argv[])
 	if (argc < 5)
 	{
 		printf("less arg err = %d\n", argc);
+		printf("input arg=[inputfile,start(hex number)");
+		printf(",end(hex number),outputfile]\n");
 		exit(1);
 	}
 	start = strnum2long(argv[2]);

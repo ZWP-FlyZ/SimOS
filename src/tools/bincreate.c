@@ -23,6 +23,8 @@ int main(int argc, char *argv[])
 	if (argc != 4)
 	{
 		printf("bad arg size = %d\n", argc);
+		printf("input arg=[outputfile,blocksize(dec number ,1-4096)");
+		printf(",blocknum(dec number ,1-1048576)]\n");
 		exit(1);
 	}
 	blocksize = decstr2long(argv[2]);

@@ -8,7 +8,7 @@
 /*
 use merfile cover the orifile from start,
 the sizeof(merfile) + start  must <= sizeof(orifile)
-input arg=[orifile,merfile,start]
+input arg=[orifile,merfile,start,outputfile]
 start is hex number
 */
 int main(int argc, char *argv[])
@@ -21,6 +21,7 @@ int main(int argc, char *argv[])
 	if (argc != 5)
 	{
 		printf("bad arg size = %d\n", argc);
+		printf("input arg=[orifile,merfile,start(dec number),outputfile]\n");
 		exit(1);
 	}
 	start = strnum2long(argv[3]);
