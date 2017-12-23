@@ -2,6 +2,7 @@
 *.o
 *.to
 *.out
+*.out*
 *.exe
 *.bin
 bintools/

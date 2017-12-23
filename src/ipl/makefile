@@ -2,7 +2,7 @@ TOOLS_PATH	=	../../bintools
 OUT_PATH	=	../../out#SimOS.img输出文件
 
 
-REMOVE	=	del#in windows
+REMOVE	=	rm 
 
 MAKE	=	make -r
 AS		=	as
@@ -17,7 +17,7 @@ default :
 	$(MAKE) ipl.bin 
 
 ipl.o : ipl.s makefile
-	$(AS) -32 ipl.s -o ipl.o
+	$(AS) --32 -c ipl.s -o ipl.o
 ipl.to : ipl.o makefile
 	$(OBJCOPY) -R .note -R .comment -S -O binary ipl.o ipl.to
 ipl.bin : ipl.to makefile

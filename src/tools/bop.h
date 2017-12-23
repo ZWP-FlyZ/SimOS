@@ -4,7 +4,7 @@
 #define uchar unsigned char
 #define ushort unsigned short
 #define uint unsigned int
-#define ulong unsigned int 
+#define ulong unsigned long 
 #define ulonglong unsigned long long
 
 ulonglong strnum2long(char * str);
