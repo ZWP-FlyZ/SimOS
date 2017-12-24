@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 	if (argc != 5)
 	{
 		printf("bad arg size = %d\n", argc);
-		printf("input arg=[orifile,merfile,start(dec number),outputfile]\n");
+		printf("input arg=[orifile,merfile,start(hex number),outputfile]\n");
 		exit(1);
 	}
 	start = strnum2long(argv[3]);
@@ -55,10 +55,11 @@ int main(int argc, char *argv[])
 	uint offset = start % BUFF_LEN;
 	int rc;
 	//before merge
+	rc = fread(buff, sizeof(uchar), BUFF_LEN, oriFile);
 	for (int i = 0; i < start_index; i++) 
 	{
-		rc = fread(buff, sizeof(uchar), BUFF_LEN, oriFile);
 		fwrite(buff, sizeof(uchar), rc, outFile);
+		rc = fread(buff, sizeof(uchar), BUFF_LEN, oriFile);
 	}
 	if (offset>0)
 		fwrite(buff, sizeof(uchar), offset, outFile);

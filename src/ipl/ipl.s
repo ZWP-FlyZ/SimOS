@@ -9,6 +9,11 @@ BOOTADDR = 0x7c00
 HEADER_IN_SEQ_ADDR =  0x0800
 HEADER_IN_OFF_ADDR =  0x0
 
+# entry偏移地址
+START_ENTRY_OFFSET = 0x20
+START_ENTRY_IN_SEQ_ADDR = HEADER_IN_SEQ_ADDR + START_ENTRY_OFFSET
+
+
 # 读取柱面数，第一柱面
 CYLS = 10
 
@@ -43,7 +48,7 @@ entry:
     mov $0,%ax
     mov %ax,%ss
     mov %ax,%ds
-    mov $0x7bfc,%sp
+    mov $0x7c00,%sp
 
 # 读取之后的扇区数据，注意以下方法可能只适合软盘读取方式
 
@@ -57,7 +62,7 @@ readloop:
     mov $0,%si # 重置错误读取计数
 
 retry:
-    mov $0x02,%ax # 设置读取操作标记
+    mov $0x2,%ah # 设置读取操作标记
     mov $0x1,%al # 单次读取扇区数
     mov $0x0,%bx # 读入偏移地址
     mov $0x0,%dl # 设置磁盘号
@@ -73,7 +78,7 @@ retry:
 
 next:
     mov %es,%ax
-    add $0x20,%ax
+    add $0x0020,%ax
     mov %ax,%es
     add $0x1,%cl # 扇区号增加
     cmp $18,%cl # 是否为最后一个扇区
@@ -88,11 +93,25 @@ next:
     jb readloop
 
 # 跳转到header.S 启动内核
-    jmpl $HEADER_IN_SEQ_ADDR,$HEADER_IN_OFF_ADDR 
+    jmpl $START_ENTRY_IN_SEQ_ADDR,$HEADER_IN_OFF_ADDR 
 
+; prtboot:
+;     mov $0x8000,%si
+;     mov $0x0,%cx
+; pbloop:
+;     mov (%si),%al
+;     add $0x1,%si
+;     add $0x1,%cx
+;     cmp $0x400,%cx
+;     je  err
+;     mov $0x0e,%ah
+;     mov $15,%bx
+;     int $0x10
+;     jmp pbloop
+           
 err:
     mov $BOOTADDR,%ax
-    add $msg,%ax
+    add $err_msg,%ax
     mov %ax,%si
 printLoop:
     mov (%si),%al
