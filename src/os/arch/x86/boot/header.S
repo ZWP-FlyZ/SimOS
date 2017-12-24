@@ -12,6 +12,7 @@ BOOTSETUP_SEQ = HEADER_IN_SEQ_ADDR # define in boot.h
 EMPTY_AREA_SIZE = EMPTY_AREA # 预留空间大小
 CONFIG_AREA_SIZE = 128 # 配置区空间大小
 
+# 暂时未使用
 code_size = BOOTSETUP_CODE_AREA_SIZE
 heap_size = BOOTSETUP_HEAP_AREA_SIZE
 
@@ -71,7 +72,8 @@ start_setup:
 # 启用Fmain来处理进一步的内核初始化代码
 # Fmain 不会返回，如果返回需要运行后面的错误代码
 next:
-#    calll Fmain
+    calll Fmain
+
 
 # Fmain 返回调用puts方法显示错误
 setup_err:

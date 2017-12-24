@@ -1,17 +1,21 @@
 
-
-AS 		= gcc -m16 -c
+GCC 		= gcc -m16 -c 
 LD 		= ld -m elf_i386 
 REMOVE	= del  
 
-
 OBJCOPY = objcopy -R .comment -R .note  
 
-header.o : header.S makefile 
-	$(AS) header.S -o header.o
 
-boot.or : header.o boot.ld makefile
-	$(LD) header.o -T boot.ld  -o boot.or
+OBJSET = header.o Fmain.o
+
+%.o : %.c makefile
+	$(GCC) $*.c -o $*.o
+
+header.o : header.S makefile 
+	$(GCC) header.S -o header.o
+
+boot.or :$(OBJSET) boot.ld makefile
+	$(LD) $(OBJSET) -T boot.ld  -o boot.or
 
 boot.bin : boot.or makefile
 	$(OBJCOPY) boot.or -S -O binary boot.bin

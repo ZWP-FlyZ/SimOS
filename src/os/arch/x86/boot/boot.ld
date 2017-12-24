@@ -13,6 +13,7 @@ SECTIONS
     . = 512;
     .header : { *(.header) }
     .entrytext : { *(.entrytext) }
+    .inittext : { *(.inittext) }
       /* 初始化结束位置 */    
     _end_init = .;
 
