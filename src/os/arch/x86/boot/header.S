@@ -8,8 +8,9 @@
 
 #include "boot.h"
 
-BOOTSETUP_SEQ = HEADER_IN_SEQ_ADDR # define in boot.h
-EMPTY_AREA_SIZE = EMPTY_AREA # 预留空间大小
+
+BOOTSETUP_SEQ = 0x0800 # define in boot.h
+EMPTY_AREA_SIZE = 512 # 预留空间大小
 CONFIG_AREA_SIZE = 128 # 配置区空间大小
 
 # 暂时未使用

@@ -5,7 +5,7 @@ OUT_PATH	=	../../out/
 
 MAKE	=	make -r VERBOSE=1 
 GCC		=	gcc
-REMOVE	=	del#in windows
+REMOVE	=	rm -f
 
 DEPEND_OBJ	= bop.o fop.o
 BINCOPY_OBJ = $(DEPEND_OBJ) bincopy.o

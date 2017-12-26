@@ -21,7 +21,8 @@ CYLS = 10
 ERR_READ_COUT = 5 
 
     .code16gcc
-    .section .boottext
+    .section .boottext,"ax"
+    .global bootse
 bootse:
     ljmp $BOOTSEQ,$entry
     .byte 0x90

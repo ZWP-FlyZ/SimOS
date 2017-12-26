@@ -5,6 +5,7 @@
 *.out*
 *.exe
 *.bin
+*.cpo
 bintools/
 out/
 
