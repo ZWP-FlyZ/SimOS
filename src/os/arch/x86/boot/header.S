@@ -78,11 +78,6 @@ next:
 
 # Fmain 返回调用puts方法显示错误
 setup_err:
-#    movl $err_msg,%eax
-# 调用puts显示错误信息
-#    calll puts
-
-# 以下暂时方法
     mov $err_msg,%si
 printLoop:
     mov (%si),%al

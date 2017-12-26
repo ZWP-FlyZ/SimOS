@@ -71,8 +71,10 @@
 //     };
 // } bios_regs;
 
-/* 16位模式下字符信息输出 tty.c*/
+void io_hlt();
+void die();
 
+/* 16位模式下字符信息输出 tty.c*/
 void bios_putchar(int c);
 void _puts(const char *);
 void _putchar(int);

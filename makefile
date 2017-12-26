@@ -33,7 +33,7 @@ BINCREATE = $(BINTOOLS_PATH)bincreate
 BINMERGE = $(BINTOOLS_PATH)binmerge
 
 #生成一个512 * 2880 的空镜像文件,将ipl加入
-img : 
+img : all 
 	$(BINCREATE) $(OUT_PATH)flopyimg.rim 512 2880 
 	$(BINMERGE) $(OUT_PATH)flopyimg.rim $(IPL_SRC_PATH)ipl.bin 0x0 $(OUT_PATH)SimOS.tmp
 	$(BINMERGE) $(OUT_PATH)SimOS.tmp $(ARCH_BOOT_PATH)boot.bin 0x200 $(OUT_PATH)SimOS.img
