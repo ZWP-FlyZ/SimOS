@@ -1,6 +1,9 @@
 #ifndef __CTYPES_H_
 #define __CTYPES_H_
 
+
+#define NULL 0x0
+
 typedef char  s8;
 typedef short s16;
 typedef int s32;

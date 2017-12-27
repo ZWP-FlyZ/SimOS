@@ -3,6 +3,8 @@
 #ifndef _BOOT_H_
 #define _BOOT_H_
 
+#include "bootinfo.h"
+
 //header.S 代码被导入内存中的段值
 #define HEADER_IN_SEQ_ADDR 0x0800
 //header.S 代码被导入内存中的线性地址
@@ -12,19 +14,16 @@
 #define BOOTSETUP_CODE_AREA_SIZE 0x8000
 #define BOOTSETUP_HEAP_AREA_SIZE 0x8000
 
-#define BOOT_PARAMS_ADDR 
 
+// 位于header部分的 两个启动信息
+extern struct boot_static_info boot_static_info;
+extern struct boot_config_info boot_config_info;
 
-
-
-/*启动配置阶段定义的类型符合*/
-
+//
 void io_hlt();
 void io_cli();
 void io_sti();
 void die();
-
-// 
 
 
 /* 16位模式下字符信息输出 tty.c*/
@@ -36,10 +35,6 @@ void _putchar(int);
 // video 设置 video.c
 void set_video();
 
-
-static inline void test(){
-    _puts("this is inline \n");
-}
 
 // // 保护模式跳转
 // void go_to_protect_model();

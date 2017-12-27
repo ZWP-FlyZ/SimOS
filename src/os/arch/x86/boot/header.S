@@ -7,9 +7,12 @@
 */
 
 
-BOOTSETUP_SEQ = 0x0800 # define in boot.h
+BOOTSETUP_SEQ = 0x0800 # 
+BOOTSETUP_ADDR = 0x8000
+
+DEFAULT_VRAM_ADDR = 0xb8000 # 默认显存位置
 EMPTY_AREA_SIZE = 512 # 预留空间大小
-CONFIG_AREA_SIZE = 128 # 配置区空间大小
+CONFIG_AREA_SIZE = 512 # 配置区空间大小
 
 # 代码模式 
     .code16gcc 
@@ -25,8 +28,30 @@ empty_start:
 _Fstart:
     jmp start_setup
 config_area:
-# 预留128配置空间,系统编译配置，以后拓展
+# 预留配置空间,系统编译配置，以后拓展
+
+
+    # boot静态信息
+    .global boot_static_info
+boot_static_info:
+    .string "12345678" # 8Btye,strinfo
+    .long BOOTSETUP_ADDR # 内核启动位置,code16_start
+    .long 0x10000 # 保护模式代码位置 code32_start
+
+
+    # boot设置信息，可变动
+    .global boot_config_info
+boot_config_info:
+    .Byte 0 # kbd_status 键盘信息
+    # struct screen_info 
+    .word 0x1 # vmode 默认80*25 文本模式
+    .word 80 # screen_x 横向字符数
+    .word 25 # screen_y 纵向行数
+    .long (DEFAULT_VRAM_ADDR-BOOTSETUP_ADDR)  # vram 显存 段偏移地址
+
     .fill CONFIG_AREA_SIZE-(.-config_area),1,0
+
+
 
     .section .entrytext,"ax"
 start_setup: 

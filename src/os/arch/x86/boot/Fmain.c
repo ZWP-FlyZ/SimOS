@@ -1,12 +1,13 @@
 /*
 *
-*
+*   有header进入此次并在实模式进行初始配置
 *
 *
 */
 #include "boot.h"
 #include "ctypes.h"
 #include "screen_info.h"
+#include "bstring.h"
 /*
 *   进行更高级别的初始化，进入32位保护模式，
 *   该函数不进行返回
@@ -15,7 +16,7 @@ void Fmain()
 {
     u8 k = 20;
     u8 i = 0;
-    u8 *start1 = (u8 *)0xb8000;
+    u8 *start1 = (u8 *)0x2d4;
     u8 *start2 = (u8 *)0xb0000;    
     _putchar('A');
     _putchar('\n');
@@ -36,6 +37,20 @@ void Fmain()
     {
         _putchar(start2[i]);
     }
+
+    _putchar('\n');
+
+    k = sizeof(struct boot_static_info);
+    char str[10];
+    char *ori = &(boot_static_info);
+    for(i=0;i<k;i++)
+    {
+        num2str(*(ori+i),str);
+       _puts(str); 
+    }
+    _puts(boot_static_info.strinfo);
+
+
     // 不返回 暂时使用
    while(1) {
        io_hlt();
