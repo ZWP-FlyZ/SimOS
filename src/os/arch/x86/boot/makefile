@@ -1,6 +1,8 @@
 OBJS_PATH = .
 
-GCC 	= gcc -m16 -c 
+INCLUDE_PATH = ../include/
+
+GCC 	= gcc -m16 -c -I $(INCLUDE_PATH)
 LD 		= ld -m elf_i386 
 REMOVE	= rm  -f
 
@@ -9,7 +11,7 @@ OBJCOPY = objcopy -R .comment -R .note
 OBJSET = header.o Fmain.o tty.o bioscalls.o ioboot.o
 
 %.o : %.c makefile
-	$(GCC) $*.c -o $(OBJS_PATH)/$*.o
+	$(GCC)  $*.c -o $(OBJS_PATH)/$*.o
 
 %.o : %.s  makefile 
 	$(GCC)  $*.s -o $(OBJS_PATH)/$*.o 

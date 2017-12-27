@@ -6,16 +6,10 @@
 *   入口处为_Fstart
 */
 
-#include "boot.h"
-
 
 BOOTSETUP_SEQ = 0x0800 # define in boot.h
 EMPTY_AREA_SIZE = 512 # 预留空间大小
 CONFIG_AREA_SIZE = 128 # 配置区空间大小
-
-# 暂时未使用
-code_size = BOOTSETUP_CODE_AREA_SIZE
-heap_size = BOOTSETUP_HEAP_AREA_SIZE
 
 # 代码模式 
     .code16gcc 
