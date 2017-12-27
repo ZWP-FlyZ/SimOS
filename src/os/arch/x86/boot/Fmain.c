@@ -41,15 +41,18 @@ void Fmain()
     _putchar('\n');
 
     k = sizeof(struct boot_static_info);
-    char str[10];
-    char *ori = &(boot_static_info);
+    s8 str[10];
+    s8 *ori = (char *)(&boot_static_info);
     for(i=0;i<k;i++)
     {
-        num2str(*(ori+i),str);
-       _puts(str); 
+        number(str,*(ori+i),16);
+        _puts(str);
+        _puts(" \n"); 
     }
     _puts(boot_static_info.strinfo);
 
+
+    set_video();
 
     // 不返回 暂时使用
    while(1) {

@@ -1,10 +1,8 @@
 #ifndef __BSTRING_H_
 #define __BSTRING_H_
-#include "ctypes.h"
 
 // bstring.c
-s8 num2str(u8 num,s8 *str);
-
+void __attribute__((section(".inittext")))number(char * str, long num, int base);
 
 #endif 
 

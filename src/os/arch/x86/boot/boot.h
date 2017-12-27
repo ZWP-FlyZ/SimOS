@@ -24,7 +24,7 @@ void io_hlt();
 void io_cli();
 void io_sti();
 void die();
-
+void __stack_chk_fail();
 
 /* 16位模式下字符信息输出 tty.c*/
 void bios_putchar(int c);

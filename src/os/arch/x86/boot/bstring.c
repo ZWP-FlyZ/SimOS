@@ -1,19 +1,23 @@
 
 #include "ctypes.h"
-#include "bstring.h"
 
 // 将char 转换成一个字符串
-s8 num2str(u8 num,s8 *str){
-    s8 len=0,tmp=0,i=0,k=100;
-    if(str == NULL) return -1;
-    for(i=0;i<=2;i++,k/=10){
-        if(!(tmp = num/k))
-            str[len++] = tmp+'0';
-        num=num%k;
-    }
-    if(len==0)  str[len++] = '0';
-    str[len]='\0';
-    return len;
+void __attribute__((section(".inittext")))number(char * str, long num, int base)
+{
+	char * dig = "0123456789ABCDEF";
+	char tmp[40];
+	char len = 0,rel=0;
+	if (str == NULL || base < 2|| base>16)  return ;
+	if (num == 0) tmp[len++] = '0';
+	else while (num!=0) 
+	{
+		rel = (unsigned long)num % (unsigned )base;
+		tmp[len++] = dig[rel];
+		num = (unsigned long)num / (unsigned )base;
+	}
+	while (len-- > 0)
+		*str++ = tmp[len];
+	*str = '\0';
 }
 
 

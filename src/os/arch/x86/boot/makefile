@@ -8,7 +8,9 @@ REMOVE	= rm  -f
 
 OBJCOPY = objcopy -R .comment -R .note  
 
-OBJSET = header.o Fmain.o tty.o bioscalls.o ioboot.o bstring.o
+OBJSET = tty.o bioscalls.o\
+		ioboot.o bstring.o video.o\
+        header.o Fmain.o error.o
 
 %.o : %.c makefile
 	$(GCC)  $*.c -o $(OBJS_PATH)/$*.o

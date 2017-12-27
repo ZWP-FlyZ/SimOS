@@ -98,6 +98,7 @@ next:
 # Fmain 返回调用puts方法显示错误
 setup_err:
     mov $err_msg,%si
+# __stack_chk_fail error jmp hear 
 printLoop:
     mov (%si),%al
     add $0x1,%si
@@ -113,5 +114,6 @@ die:
     hlt
     jmp die
 err_msg:
-    .string "Fmain returned! ERROR hear!!!"
-
+    .string "Fmain returned! ERROR hear!!! "
+stack_chk_msg:
+    .string "stack_chk_fail ERROR!!!"
