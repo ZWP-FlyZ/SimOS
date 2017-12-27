@@ -36,6 +36,11 @@ void _putchar(int);
 // video 设置 video.c
 void set_video();
 
+
+static inline void test(){
+    _puts("this is inline \n");
+}
+
 // // 保护模式跳转
 // void go_to_protect_model();
 
