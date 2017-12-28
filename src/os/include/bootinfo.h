@@ -14,6 +14,9 @@ struct boot_static_info
     s8  strinfo[8];    //长度为16的文字信息
     u32 code16_start;
     u32 code32_start;    //保护模式起始地址
+
+    u16 heap_stack_end; // 堆与栈结尾位置
+
 }__attribute__((packed));
 
 //可更替信息的信息

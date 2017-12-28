@@ -1,5 +1,5 @@
 
-ARCH_BOOT_PATH 	= 	./src/os/arch/x86/boot/
+ARCH_BOOT_PATH 	= 	./src/os/boot/
 #IPL源码路径
 IPL_SRC_PATH	=	./src/ipl/
 #工具源码的路径

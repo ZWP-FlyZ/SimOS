@@ -19,6 +19,22 @@ void __attribute__((section(".inittext")))_puts(const char *str)
         _putchar(*str++);
 }
 
+void __attribute__((section(".inittext")))printc(int c)
+{
+       _putchar(c); 
+} 
+
+void __attribute__((section(".inittext")))print(const char *str)
+{
+       while(*str) _putchar(*str++); 
+} 
+
+void __attribute__((section(".inittext")))println(const char *str)
+{
+       while(*str) _putchar(*str++); 
+        _putchar('\n');
+} 
+
 
 
 

@@ -31,12 +31,16 @@ config_area:
 # 预留配置空间,系统编译配置，以后拓展
 
 
-    # boot静态信息
+    # boot启动后静态信息
     .global boot_static_info
 boot_static_info:
-    .string "12345678" # 8Btye,strinfo
+    .asciz "1234567" # 总共8Btye,,strinfo
     .long BOOTSETUP_ADDR # 内核启动位置,code16_start
     .long 0x10000 # 保护模式代码位置 code32_start
+
+# heap_stack_end 堆栈共同的结尾处，当前为初始值
+# 之后再heap_init()中初始化
+    .word 0xdfff 
 
 
     # boot设置信息，可变动
