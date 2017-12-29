@@ -10,7 +10,7 @@ OBJCOPY = objcopy -R .comment -R .note
 
 OBJSET = tty.o bioscalls.o\
 		ioboot.o bstring.o video.o\
-        header.o Fmain.o error.o
+        header.o Fmain.o error.o memory.o
 
 %.o : %.c makefile
 	$(GCC)  $*.c -o $(OBJS_PATH)/$*.o

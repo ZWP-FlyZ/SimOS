@@ -21,12 +21,9 @@ static void kbd_init()
 {
     //获取键盘状态并赋值到
     char buf[10];
-    u8 ks= bios_kbd(0x0200);//获取键盘状态
-    boot_config_info.kbd_status  = ks;
-    number(buf,ks,16);
-    println(buf);
+    boot_config_info.kbd_status= bios_kbd(0x0200);//获取键盘状态
     bios_kbd(0x0305); //设置键盘重复速率
-
+    println("\n---> kbd_init finished!");
 }
 
 /* 设定64位模式*/
@@ -47,6 +44,7 @@ static void heap_init(void)
     u32 hse= (((0xfffc + (u32)(&_end) )/2)&(-3));
     heap_end = (char *)hse;
     boot_static_info.heap_stack_end = (u16)hse;
+    println("\n---> heap_init finished!");
 }
 
 
@@ -55,16 +53,17 @@ void Fmain()
     u8 k = 20;
     u8 i = 0;
 
-    _putchar('A');
-    _putchar('\n');
-    println("hello world\n");
+    println("FlyZ'OS is booting....\n");
     println("hello zwp\n");
+    heap_init();
 
-    set_video();
+    //此处检查内存使用情况，
+    //参考Linux boot/memory.c中，暂时不实现
+    detect_memory();
 
     kbd_init();
 
-    heap_init();
+    set_video();
 
     k = sizeof(struct boot_static_info);
     print("k=");
@@ -75,7 +74,8 @@ void Fmain()
     for(i=0;i<k;i++)
     {
         number(str,*(ori+i),16);
-        println(str);
+        print(str);
+        print("  ");
     }
 
     number(str,boot_static_info.heap_stack_end,16);

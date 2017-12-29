@@ -6,6 +6,6 @@ void set_video()
 {
     struct boot_config_info * bci = &boot_config_info;
     if(bci->screen_info.vmode == VMODE_TEXT_03H)
-        _puts("video model in defaule text model (0x03)\n");
+        println("\n---> video model in defaule text model,ready change to card model");
 
 }

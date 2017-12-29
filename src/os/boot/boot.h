@@ -45,6 +45,9 @@ void print(const char *);
 void println(const char *);
 
 
+//memory.c
+void detect_memory();
+
 // video 设置 video.c
 void set_video();
 

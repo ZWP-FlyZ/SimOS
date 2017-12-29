@@ -48,7 +48,7 @@ boot_static_info:
 boot_config_info:
     .Byte 0 # kbd_status 键盘信息
     # struct screen_info 
-    .word 0x1 # vmode 默认80*25 文本模式
+    .word 0x03 # vmode 默认80*25 文本模式
     .word 80 # screen_x 横向字符数
     .word 25 # screen_y 纵向行数
     .long (DEFAULT_VRAM_ADDR-BOOTSETUP_ADDR)  # vram 显存 段偏移地址
