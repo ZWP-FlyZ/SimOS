@@ -20,6 +20,9 @@ OBJSET = tty.o bioscalls.o\
 %.o : %.S  makefile 
 	$(GCC)  $*.S -o $(OBJS_PATH)/$*.o 
 
+%.o : %.s  makefile 
+	$(GCC)  $*.s -o $(OBJS_PATH)/$*.o
+
 boot.or : $(OBJSET) boot.ld makefile
 	$(LD) $(OBJS_PATH)/*.o -T boot.ld  -o $(OBJS_PATH)/boot.or
 

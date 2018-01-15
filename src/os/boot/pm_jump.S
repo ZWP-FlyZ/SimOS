@@ -3,7 +3,7 @@
 
     .code16gcc
     
-GLOBAL(test)
+GLOBAL(protect_model_jump)
     movl $100,%eax
 
 

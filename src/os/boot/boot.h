@@ -137,6 +137,7 @@ void set_video();
 
 
 // // 保护模式初始化与跳转
+// protectmode.c pm_jump.S
 void __attribute__((noreturn))go_to_protect_model();
 void __attribute__((noreturn))protect_model_jump();
 #endif
