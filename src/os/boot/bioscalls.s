@@ -3,13 +3,16 @@
 */
 
 
+#include "asmfunc.h"
+
     .code16gcc
     .section .inittext
 
 # 定义bios_putchar，在屏幕中打印一个字符
 # 函数原型 void bios_putchar(int)
-    .global bios_putchar 
-bios_putchar: 
+#     .global bios_putchar 
+# bios_putchar:
+GLOBAL(bios_putchar)
     pushl %ebp
     movl  %esp,%ebp
     pushl %eax
@@ -29,8 +32,9 @@ bios_putchar:
 
 # 定义bios_kbd，在屏幕中打印一个字符
 # 函数原型 u8 bios_kbd(u16)
-    .global bios_kbd 
-bios_kbd: 
+#    .global bios_kbd 
+# bios_kbd:
+GLOBAL(bios_kbd) 
     pushl %ebp
     movl  %esp,%ebp
 
