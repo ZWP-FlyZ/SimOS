@@ -56,7 +56,7 @@ static void set_gdt()
 	};
 
 	static struct gdtr gdt;
-	gdt.len = sizeof(boot_gdt);
+	gdt.len = sizeof(boot_gdt)-1;//这里不知道为什么-1?
 	gdt.addr = (u32)&gdt + (ds()<<4);
 
 	asm volatile("lgdtl %0" : : "m" (gdt));
@@ -78,16 +78,8 @@ void go_to_protect_model()
 	mask_pic();
 	set_gdt();
 	set_idt();
-	protect_model_jump();
+	protect_model_jump(boot_static_info.code32_start, (u32)&boot_config_info + (ds() << 4));
 }
-
-
-
-
-
-
-
-
 
 
 

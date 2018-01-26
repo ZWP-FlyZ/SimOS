@@ -109,10 +109,10 @@ extern char *heap_end;//堆尾，同栈尾
 #define RESET_HEAP() ((void *)(HEAP = _end))
 
 //
-void io_hlt() ;
-void io_cli();
-void io_sti();
-void die();
+// void __attribute__((fastcall))io_hlt() ;
+// void __attribute__((fastcall))io_cli();
+// void __attribute__((fastcall))io_sti();
+void __attribute__((fastcall))die();
 void __stack_chk_fail();
 
 
@@ -138,7 +138,7 @@ void set_video();
 
 // // 保护模式初始化与跳转
 // protectmode.c pm_jump.S
-void __attribute__((noreturn))go_to_protect_model();
-void __attribute__((noreturn))protect_model_jump();
+void __attribute__((noreturn,fastcall))go_to_protect_model();
+void __attribute__((noreturn,fastcall))protect_model_jump(u32 code32_start,u32 param_addr);
 #endif
 

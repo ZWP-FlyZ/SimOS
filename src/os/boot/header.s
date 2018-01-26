@@ -36,7 +36,7 @@ config_area:
 boot_static_info:
     .asciz "1234567" # 总共8Btye,,strinfo
     .long BOOTSETUP_ADDR # 内核启动位置,code16_start
-    .long 0x10000 # 保护模式代码位置 code32_start
+    .long 0x100000 # 保护模式代码位置 code32_start
 
 # heap_stack_end 堆栈共同的结尾处，当前为初始值
 # 之后再heap_init()中初始化
