@@ -79,7 +79,8 @@ start_setup:
     pushw %ds
     pushw $next
     lretw # 将 cs<-ds,ip<-$next
-
+    
+next:
 # setup_sig 在链接器脚本boot.ld 中定义
     cmpl	$0x5a5aaa55, setup_sig
     jne	setup_err
@@ -95,7 +96,7 @@ start_setup:
 
 # 启用Fmain来处理进一步的内核初始化代码
 # Fmain 不会返回，如果返回需要运行后面的错误代码
-next:
+
     calll Fmain
 
 
