@@ -1,24 +1,7 @@
 
 
-# boot起始段地址
-BOOTSEQ = 0x07c0
-# boot起始线地址
-BOOTADDR = 0x7c00
+#include "ipl.h"
 
-# header.S 代码被导入内存中的段值与偏移量
-HEADER_IN_SEQ_ADDR =  0x0800
-HEADER_IN_OFF_ADDR =  0x0
-
-# entry偏移地址
-START_ENTRY_OFFSET = 0x20
-START_ENTRY_IN_SEQ_ADDR = HEADER_IN_SEQ_ADDR + START_ENTRY_OFFSET
-
-
-# 读取柱面数，第一柱面
-CYLS = 10
-
-# 错误读取计数
-ERR_READ_COUT = 5 
 
     .code16gcc
     .section .boottext,"ax"
@@ -53,7 +36,7 @@ entry:
 
 # 读取之后的扇区数据，注意以下方法可能只适合软盘读取方式
 
-    mov $HEADER_IN_SEQ_ADDR,%ax # 设定起始段位置
+    mov $HEADER_IN_SEQ_ADDR,%ax # 设定起始段位置 0x07c0开始
     mov %ax,%es
     mov $0,%ch # 柱面号
     mov $0,%dh # 磁头号
@@ -95,20 +78,6 @@ next:
 
 # 跳转到header.S 启动内核
     jmpl $START_ENTRY_IN_SEQ_ADDR,$HEADER_IN_OFF_ADDR 
-
-; prtboot:
-;     mov $0x8000,%si
-;     mov $0x0,%cx
-; pbloop:
-;     mov (%si),%al
-;     add $0x1,%si
-;     add $0x1,%cx
-;     cmp $0x400,%cx
-;     je  err
-;     mov $0x0e,%ah
-;     mov $15,%bx
-;     int $0x10
-;     jmp pbloop
            
 err:
     mov $BOOTADDR,%ax

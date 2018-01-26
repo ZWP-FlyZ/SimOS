@@ -16,8 +16,8 @@ END_ADDR=	0x200 #截取结束字节数（不包含该位置）
 default : 
 	$(MAKE) ipl.bin 
 
-ipl.o : ipl.s makefile
-	$(GCC)  ipl.s -o ipl.o
+ipl.o : ipl.S makefile
+	$(GCC)  ipl.S -o ipl.o
 ipl.bin : ipl.o makefile
 	$(OBJCOPY) -j .boottext -O binary ipl.o ipl.bin
 # ipl.bin : ipl.to makefile
