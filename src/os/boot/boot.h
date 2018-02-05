@@ -136,6 +136,12 @@ void detect_memory();
 void set_video();
 
 
+
+
+// 开启A20寻址 a20.c
+int __attribute__((fastcall))enable_a20();
+
+
 // // 保护模式初始化与跳转
 // protectmode.c pm_jump.S
 void __attribute__((noreturn,fastcall))go_to_protect_model();

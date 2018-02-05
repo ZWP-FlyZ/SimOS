@@ -12,7 +12,7 @@ OBJSET = tty.o bioscalls.o\
 		ioboot.o bstring.o video.o\
         header.o Fmain.o error.o \
 		memory.o protectmode.o pm_jump.o \
-		pm_jump.o
+		pm_jump.o a20.o
 
 %.o : %.c makefile
 	$(GCC)  $*.c -o $(OBJS_PATH)/$*.o

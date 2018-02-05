@@ -65,6 +65,11 @@ void Fmain()
 
     set_video();
 
+    if(enable_a20())
+        println("\n---> enable a20 finish!!!!");
+    else
+        println("\n---> enable a20 ERROR!!!!");
+
     k = sizeof(struct boot_static_info);
     print("k=");
     s8 str[10];
