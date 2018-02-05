@@ -21,6 +21,7 @@ tools :
 	$(MAKE) -C $(TOOL_SRC_PATH) all
 	
 all : 
+	$(MAKE) init_dir
 	$(MAKE) tools 
 	$(MAKE) ipl
 	$(MAKE) arcboot
@@ -28,6 +29,10 @@ clean :
 	$(MAKE) -C $(IPL_SRC_PATH) clean
 	$(MAKE) -C $(TOOL_SRC_PATH) clean
 	$(MAKE) -C $(ARCH_BOOT_PATH) clean
+
+init_dir :
+	if [ ! -d "$(BINTOOLS_PATH)" ]; then mkdir $(BINTOOLS_PATH); fi
+	if [ ! -d "$(OUT_PATH)" ]; then mkdir $(OUT_PATH); fi	
 
 BINCREATE = $(BINTOOLS_PATH)bincreate
 BINMERGE = $(BINTOOLS_PATH)binmerge
