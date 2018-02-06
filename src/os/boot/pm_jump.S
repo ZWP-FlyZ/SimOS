@@ -10,6 +10,7 @@ GLOBAL(protect_model_jump)
     xorl %ebx,%ebx  
     movw %cs,%bx
     shll $4,%ebx
+    calll error_die
     
 
 

@@ -177,6 +177,7 @@ extern char *heap_end;//堆尾，同栈尾
 // void __attribute__((fastcall))io_cli();
 // void __attribute__((fastcall))io_sti();
 void __attribute__((fastcall))die();
+void __attribute__((fastcall))error_die();
 void __stack_chk_fail();
 
 
@@ -208,7 +209,7 @@ int __attribute__((fastcall))enable_a20();
 
 // // 保护模式初始化与跳转
 // protectmode.c pm_jump.S
-void __attribute__((noreturn,fastcall))go_to_protect_model();
+void __attribute__((noreturn))go_to_protect_model();
 void __attribute__((noreturn,fastcall))protect_model_jump(u32 code32_start,u32 param_addr);
 #endif
 

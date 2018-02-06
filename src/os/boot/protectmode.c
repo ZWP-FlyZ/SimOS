@@ -73,6 +73,15 @@ void set_idt(){
 
 void go_to_protect_model()
 {
+
+	if(enable_a20())
+	{
+		println("\n---> enable a20 ERROE!!!!");
+		die();
+	}  
+    else
+        println("\n---> enable a20 finished!!!!");
+
 	close_interrupt();
 	reset_coprocess();
 	mask_pic();
