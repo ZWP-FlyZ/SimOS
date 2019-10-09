@@ -33,7 +33,6 @@ entry:
     mov %ax,%ss
     mov %ax,%ds
     mov $0x7c00,%sp
-
 # 读取之后的扇区数据，注意以下方法可能只适合软盘读取方式
 
     mov $HEADER_IN_SEQ_ADDR,%ax # 设定起始段位置 0x07c0开始
@@ -80,7 +79,7 @@ next:
     jmpl $START_ENTRY_IN_SEQ_ADDR,$HEADER_IN_OFF_ADDR 
            
 err:
-    mov $BOOTADDR,%ax
+    mov $0x7c00,%ax
     add $err_msg,%ax
     mov %ax,%si
 printLoop:

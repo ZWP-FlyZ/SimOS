@@ -65,7 +65,7 @@ void Fmain()
 
     set_video();
 
-    go_to_protect_model();
+   // go_to_protect_model();
 
     k = sizeof(struct boot_static_info);
     print("k=");

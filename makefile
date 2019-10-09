@@ -10,7 +10,7 @@ BINTOOLS_PATH	= 	./bintools/
 #镜像路径
 OUT_PATH	= 	./out/
 
-REMOVE	=	del#in windows
+REMOVE	=	rm -f
 MAKE	=	make -r VERBOSE=1
 
 arcboot:
@@ -25,7 +25,8 @@ all :
 	$(MAKE) tools 
 	$(MAKE) ipl
 	$(MAKE) arcboot
-clean :  
+clean :
+	$(REMOVE) $(OUT_PATH)*.img $(OUT_PATH)*.tmp
 	$(MAKE) -C $(IPL_SRC_PATH) clean
 	$(MAKE) -C $(TOOL_SRC_PATH) clean
 	$(MAKE) -C $(ARCH_BOOT_PATH) clean
@@ -52,4 +53,8 @@ run :
 
 run64 : 
 	$(QEMU64) -boot a -fda $(OUT_PATH)SimOS.img
+
+ipsrun :
+	$(BINMERGE) $(OUT_PATH)flopyimg.rim $(IPL_SRC_PATH)ipl.bin 0x0 $(OUT_PATH)SimOS.img
+	$(QEMU)  -boot a -fda $(OUT_PATH)SimOS.img
 
